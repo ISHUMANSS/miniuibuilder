@@ -1,0 +1,64 @@
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 14px;
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #1976d2;
+  color: white;
+}
+
+.requirements {
+  background: #f4f4f4;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.mock-ui .menu {
+  margin-bottom: 20px;
+}
+
+.tab {
+  background: #eee;
+  margin-right: 5px;
+  padding: 6px 10px;
+}
+
+.forms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+  background: #fafafa;
+}
+
+input {
+  display: block;
+  margin-bottom: 8px;
+  padding: 6px;
+  width: 100%;
+}
