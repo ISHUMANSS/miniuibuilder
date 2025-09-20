@@ -19,8 +19,9 @@ app.post("/api/requirements", async (req, res) => {
     console.log("AI response:", response);
 
     // Send back the AI content
-    const content = response.choices[0]?.message?.content || "";
-    res.json({ aiContent: content });
+   const content = response.choices[0]?.message?.content || "";
+  console.log("AI raw content:", content); 
+  res.json({ aiContent: content });
   } catch (err) {
     console.error("Backend error:", err);
     res.status(500).json({ error: "Something went wrong" });

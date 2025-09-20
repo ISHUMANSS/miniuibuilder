@@ -16,11 +16,26 @@ const HomePage = () => {
             });
 
             const data = await res.json();
+            let content = data.aiContent;
 
-            // Parse AI JSON response
-            // Expected: { "appName": "...", "entities": [...], "roles": [...], "features": [...] }
-            const parsed = JSON.parse(data.aiContent);
-            setRequirements(parsed);
+            // Remove Markdown code fences if present
+            content = content.replace(/```json|```/g, "").trim();
+
+            // After parsing the AI JSON
+            const parsed = JSON.parse(content);
+
+            // Normalize keys to match your frontend
+            const normalized = {
+            appName: parsed["App Name"] || "Unnamed App",
+            entities: parsed.Entities || [],
+            roles: parsed.Roles || [],
+            features: Array.isArray(parsed.Features)
+                ? parsed.Features
+                : Object.keys(parsed.Features || {}) // if AI returns object, take keys as feature categories
+            };
+
+            setRequirements(normalized);
+
         } catch (err) {
             console.error(err);
             alert("Failed to get AI requirements");

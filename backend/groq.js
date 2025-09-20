@@ -18,7 +18,8 @@ export async function getGroqChatCompletion(userInput) {
       {
         role: "user",
         //the query
-        content: `Extract app requirements from this description: "${userInput}". Return JSON with App Name, Entities, Roles, Features.`,
+        content: `Extract app requirements from this description: "${userInput}". Return **only valid JSON**, with App Name, Entities, Roles, Features.`
+
       },
     ],
     //what model I want it to use
