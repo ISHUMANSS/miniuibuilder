@@ -7,23 +7,23 @@ const HomePage = () => {
     const [requirements, setRequirements] = useState(null);
 
 
-    //mock ai call
-    const handleSubmit = () => {
-        // In real app -> call backend Node.js API
-        if (description.toLowerCase().includes("student")) {
-        setRequirements({
-            appName: "Course Manager",
-            entities: ["Student", "Course", "Grade"],
-            roles: ["Teacher", "Student", "Admin"],
-            features: ["Add course", "Enrol students", "View reports"],
-        });
-        } else {
-        setRequirements({
-            appName: "My App",
-            entities: ["Entity1", "Entity2"],
-            roles: ["User", "Admin"],
-            features: ["Feature A", "Feature B"],
-        });
+    const handleSubmit = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/api/requirements", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ description }),
+            });
+
+            const data = await res.json();
+
+            // Parse AI JSON response
+            // Expected: { "appName": "...", "entities": [...], "roles": [...], "features": [...] }
+            const parsed = JSON.parse(data.aiContent);
+            setRequirements(parsed);
+        } catch (err) {
+            console.error(err);
+            alert("Failed to get AI requirements");
         }
     };
 

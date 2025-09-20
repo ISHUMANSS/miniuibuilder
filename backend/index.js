@@ -1,27 +1,32 @@
-import Groq from "groq-sdk";
+import express from "express";
+import cors from "cors";
+import { getGroqChatCompletion } from "./groq.js";
 
-//this is needed to be able to get the env from the .env
-import "dotenv/config";
+const app = express();
+const PORT = process.env.PORT || 5000;
 
+//enable CORS for frontend
+app.use(cors());
+app.use(express.json());
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+//aPI endpoint to get requirements
+app.post("/api/requirements", async (req, res) => {
+  try {
+    const { description } = req.body;
 
-export async function main() {
-  const chatCompletion = await getGroqChatCompletion();
-  // Print the completion returned by the LLM.
-  console.log(chatCompletion.choices[0]?.message?.content || "");
-}
+    // Call Groq AI
+    const response = await getGroqChatCompletion(description);
+    console.log("AI response:", response);
 
-export async function getGroqChatCompletion() {
-  return groq.chat.completions.create({
-    messages: [
-      {
-        role: "user",
-        content: "Explain the importance of fast language models",
-      },
-    ],
-    model: "openai/gpt-oss-20b",
-  });
-}
+    // Send back the AI content
+    const content = response.choices[0]?.message?.content || "";
+    res.json({ aiContent: content });
+  } catch (err) {
+    console.error("Backend error:", err);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
 
-main().catch(console.error);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
