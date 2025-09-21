@@ -1,64 +1,289 @@
-.app {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
+:root {
+  --primary-color: #6897ca;
+  --primary-hover: rgb(80, 117, 156);
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --text-color: #242527;
+  --border-color: #dee2e6;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+/*input section*/
 .input-section {
-  margin-bottom: 20px;
+  background: var(--card-background);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2.5rem;
 }
 
 textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
 }
 
+/*buttons*/
 button {
-  padding: 8px 14px;
-  margin: 4px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background: #1976d2;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: var(--primary-color);
   color: white;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.requirements {
-  background: #f4f4f4;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
+button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+button:disabled {
+  background-color: #a0c7ef;
+  cursor: not-allowed;
+}
+
+/*requirements*/
+.requirements, .mock-ui {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.requirements p {
+  line-height: 1.6;
+}
+
+/*role tabs*/
+.role-tabs {
+  margin: 1.5rem 0 2rem 0;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.role-tabs h3 {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: -2px; /*overlap the border*/
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--border-color);
+  border-bottom: none;
+  background: var(--background-color);
+  cursor: pointer;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: all 0.2s ease-in-out;
+  font-size: 0.95rem;
+}
+
+.tab-button:hover:not(.active) {
+  background: #e9ecef;
+  color: var(--primary-color);
+}
+
+.tab-button.active {
+  background: var(--card-background);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  border-bottom: 2px solid var(--card-background);
+  position: relative;
+  z-index: 1;
+}
+
+/*role content*/
+.role-content {
+  background: var(--card-background);
+  padding: 1.5rem;
+  border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-top: 0;
+}
+
+.role-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.3em;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+/*role features*/
+.role-features {
+  margin-bottom: 2rem;
+}
+
+.role-features h4 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.feature-button {
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(104, 151, 202, 0.3);
+}
+
+.feature-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(104, 151, 202, 0.4);
+  background: var(--primary-hover);
 }
 
 .mock-ui .menu {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  display: flex;
+  gap: 0.5rem;
 }
 
 .tab {
-  background: #eee;
-  margin-right: 5px;
-  padding: 6px 10px;
+  background: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }
 
+.tab.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/*forms*/
 .forms {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .form-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 10px;
-  width: 250px;
-  background: #fafafa;
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  background: #fdfdfd;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.form-card h3, .form-card h4 {
+  margin-top: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--text-color);
 }
 
 input {
   display: block;
-  margin-bottom: 8px;
-  padding: 6px;
   width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(104, 151, 202, 0.25);
+}
+
+.form-card button {
+  width: 100%;
+}
+
+/*responsive for tabs */
+@media (max-width: 768px) {
+  .tab-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .tab-button {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .feature-list {
+    justify-content: center;
+  }
+  
+  .forms {
+    grid-template-columns: 1fr;
+  }
 }

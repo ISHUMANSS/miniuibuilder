@@ -6,27 +6,75 @@ import "dotenv/config";
 //set up the api
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-// export async function main() {
-//   const chatCompletion = await getGroqChatCompletion();
-//   // Print the completion returned by the LLM.
-//   console.log(chatCompletion.choices[0]?.message?.content || "");
-// }
+
+
+//from testing openai/gpt-oss-20b has given the best general results
+
+const MODEL = "openai/gpt-oss-20b";
+
+
 
 export async function getGroqChatCompletion(userInput) {
-  return groq.chat.completions.create({
+  const chatCompletion = await groq.chat.completions.create({
+    model: MODEL,
     messages: [
       {
-        role: "user",
-        //the query
-        content: `Extract app requirements from this description: "${userInput}". Return **only valid JSON**, with App Name, Entities, Roles, Features.`
+        role: "system",
+        content: `You are a strict JSON generator for an app building assistant.
+        Always return a single JSON object matching this exact schema.
+        For "Entities", the key should be the entity name (e.g., "Student") and the value should be an array of relevant field names (e.g., ["Student Name", "Email", "Date of Birth"]).
+        If any data is missing or uncertain, return null for that specific field.
 
+        {
+          "App Name": string | null,
+          "Entities": { [entityName: string]: string[] } | null,
+          "Roles": string[] | null,
+          "Features": string[] | null
+        }`
       },
+      {
+        role: "user",
+        content: `Extract app requirements from this description: "${userInput}".`
+      }
     ],
-    //what model I want it to use
-    model: "openai/gpt-oss-20b",
+    response_format: { type: "json_object" },
   });
+
+  const rawContent = chatCompletion.choices[0]?.message?.content || "{}";
+  
+  //ai should return valid json
+  try {
+    const parsed = JSON.parse(rawContent);
+    //normalization to clean up the data
+    return normalizeAppData(parsed);
+  } catch (err) {
+      console.error("Failed to parse AI JSON response:", err);
+      //return a default structure on failure
+      return { appName: "Error App", roles: [], features: [], entities: {} };
+  }
 }
 
+function normalizeAppData(parsed) {
+  const entities = {};
 
-// //runs the query
-// main().catch(console.error);
+  //ai sometimes returns an array of strings instead of an object
+  //handle both cases
+  if (Array.isArray(parsed.Entities)) {
+    //when array like ["Student", "Course"] convert it
+    parsed.Entities.forEach((entity) => {
+      //default structure
+      //AI failed to provide fields when placeholders
+      entities[entity] = ["Name", "Description"]; 
+    });
+  } else if (parsed.Entities && typeof parsed.Entities === 'object') {
+    //if correct object format use it
+    Object.assign(entities, parsed.Entities);
+  }
+
+  return {
+    appName: parsed["App Name"] || "Unnamed App",
+    roles: parsed.Roles || [],
+    features: parsed.Features || [],
+    entities: entities, //returns as an object
+  };
+}

@@ -1,0 +1,37 @@
+//deciding to pick what moddle is the best
+
+These are just some of the models in the chat completions section of groq
+What Models:
+
+//openai/gpt-oss-20b
+//max 30 requests per min
+//max 1K per day
+//max 8K tokens per min
+//max 200K tokens per day
+
+//allam-2-7b
+//max 30 requests per min
+//max 7K per day
+//max 6K tokens per min
+//max 500K tokens per day
+
+//llama-3.1-8b-instant
+//max 30 requests per min
+//max 14.4K per day
+//max 6K tokens per min
+//max 500K tokens per day
+
+//deepseek-r1-distill-llama-70b
+//max 30 requests per min
+//max 1K per day
+//max 6K tokens per min
+//max 100K tokens per day
+
+//gemma2-9b-it
+//max 30 requests per min
+//max 14.4K per day
+//max 15K tokens per min
+//max 500K tokens per day
+
+so far I have the best results i have got from the openai moddle (openai/gpt-oss-20b)
+the system is only small and it is only for testing so I should be able to get away with the fewer requests limit and the max of 30 per min in the free teir
