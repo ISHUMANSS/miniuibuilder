@@ -13,7 +13,11 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const MODEL = "openai/gpt-oss-20b";
 
 
-
+/**
+ * get the requirements from a users input
+ * @param {*} userInput 
+ * @returns JSON
+ */
 export async function getGroqChatCompletion(userInput) {
   const chatCompletion = await groq.chat.completions.create({
     model: MODEL,
@@ -54,6 +58,11 @@ export async function getGroqChatCompletion(userInput) {
   }
 }
 
+/**
+ * turn the data into usable data in the fount end
+ * @param {*} parsed 
+ * @returns 
+ */
 function normalizeAppData(parsed) {
   const entities = {};
 

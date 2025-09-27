@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './homepage.css';
 
 const HomePage = () => {
@@ -10,6 +10,14 @@ const HomePage = () => {
 
     const [loading, setLoading] = useState(false);//loading indicator
 
+    
+    const [savedUIs, setSavedUIs] = useState([]);
+    const [saving, setSaving] = useState(false);
+
+    /**
+     * submit the ui request
+     * @returns 
+     */
     const handleSubmit = async () => {
         if (!description.trim()) {
             alert("Please enter an app description before submitting.");
@@ -48,6 +56,70 @@ const HomePage = () => {
         }
     };
 
+    /**
+     * save the ui to the db
+     * @returns 
+     */
+    const handleSaveRequirements = async () => {
+        if (!requirements) {
+            alert("Nothing to save — generate requirements first.");
+            return;
+        }
+        setSaving(true);
+        try {
+            const res = await fetch("http://localhost:5000/api/ui", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requirements),
+            });
+            if (!res.ok) throw new Error("Save failed");
+            const data = await res.json();
+            alert("Saved! id: " + data.id);
+            // refresh saved list
+            await fetchSavedUIs();
+        } catch (err) {
+            console.error(err);
+            alert("Failed to save UI.");
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    /**
+     * get all the saved uis
+     */
+    const fetchSavedUIs = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/api/ui");
+            if (!res.ok) throw new Error("Failed to fetch saved UIs");
+            const list = await res.json();
+            setSavedUIs(list);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    /**
+     * update a ui
+     * @param {*} ui 
+     * @returns 
+     */
+    const applySavedUI = (ui) => {
+        if (!ui) return;
+        setRequirements({
+            appName: ui.appName || ui["App Name"] || "Unnamed App",
+            roles: ui.roles || ui.Roles || [],
+            features: ui.features || ui.Features || [],
+            entities: ui.entities || ui.Entities || {},
+        });
+        if ((ui.roles && ui.roles.length > 0) || (ui.Roles && ui.Roles.length > 0)) {
+            setActiveTab((ui.roles && ui.roles[0]) || (ui.Roles && ui.Roles[0]));
+        } else {
+            setActiveTab(null);
+        }
+    };
+
+
     const getRoleSpecificContent = (role) => {
         if (!requirements) return { entities: {}, features: [] };
         
@@ -61,6 +133,10 @@ const HomePage = () => {
         };
     };
 
+    //fetchSavedUIs when component mounts
+    useEffect(() => {
+        fetchSavedUIs();
+    }, []);
 
     return (
         <div className="app-container">
@@ -78,6 +154,42 @@ const HomePage = () => {
                     {loading ? "Generating..." : "Generate Requirements"}
                 </button>
             </div>
+
+            {/* Save & saved list area */}
+            <div style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+            <div>
+                <button onClick={handleSaveRequirements} disabled={saving || !requirements}>
+                {saving ? "Saving..." : "Save Requirements"}
+                </button>
+            </div>
+
+            <div style={{ marginLeft: "auto", width: 320 }}>
+                <h4>Saved UIs</h4>
+                <div style={{ maxHeight: 300, overflowY: "auto", border: "1px solid #ddd", padding: 8, borderRadius: 6 }}>
+                {savedUIs.length === 0 && <p style={{ margin: 0 }}>No saved UIs</p>}
+                {savedUIs.map((s) => (
+                    <div key={s.id} style={{ padding: 6, borderBottom: "1px solid #eee" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
+                        <strong style={{ fontSize: 13 }}>{s.appName || s["App Name"] || "Unnamed"}</strong>
+                        <div style={{ display: "flex", gap: 6 }}>
+                        <button onClick={() => applySavedUI(s)}>Apply</button>
+                        <button onClick={async () => {
+                            // load full from server (optional)
+                            try {
+                            const res = await fetch(`http://localhost:5000/api/ui/${s.id}`);
+                            const full = await res.json();
+                            alert("Loaded: " + (full.appName || full["App Name"]));
+                            } catch (err) { console.error(err); alert("Failed to load"); }
+                        }}>Load</button>
+                        </div>
+                    </div>
+                    <div style={{ fontSize: 12, color: "#666" }}>{(s.roles || s.Roles || []).join(", ")}</div>
+                    </div>
+                ))}
+                </div>
+            </div>
+            </div>
+
 
              {/*display extracted requirements*/}
             {requirements && (

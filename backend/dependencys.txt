@@ -1,0 +1,4 @@
+
+npm install mongodb dotenv express cors
+
+npm i groq-sdk
