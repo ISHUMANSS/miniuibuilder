@@ -4,6 +4,7 @@ import SavedUIList from '../components/saveduilist';
 import RequirementsViewer from '../components/requirementsviewer';
 import GeneratedUI from '../components/generatedui';
 import InputSection from '../components/InputSection';
+import NavBar from '../components/navbar';
 
 const HomePage = () => {
     const [description, setDescription] = useState("");
@@ -74,13 +75,15 @@ const HomePage = () => {
         return { entities: requirements.entities || {}, features: requirements.features || [] };
     };
 
-    
+
     useEffect(() => { 
         fetchSavedUIs(); 
     }, []);
 
     return (
         <div className="app-container">
+            <NavBar />
+
             <h1>AI App Builder Portal</h1>
             <InputSection
                 description={description}
