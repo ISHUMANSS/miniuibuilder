@@ -1,10 +1,12 @@
 //index.js
 //contains all of the requests and runs the api calls
+import "dotenv/config";
 
 import express from "express";
 import cors from "cors";
 import { getGroqChatCompletion } from "./groq.js";
 import { insertUI, listUIs, getUIById, updateUI, deleteUI, connectToDB } from "./mongo.js";
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;

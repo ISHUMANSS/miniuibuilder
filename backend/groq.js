@@ -3,6 +3,7 @@ import Groq from "groq-sdk";
 //this is needed to be able to get the env from the .env
 import "dotenv/config";
 
+
 //set up the api
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
