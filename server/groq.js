@@ -1,4 +1,4 @@
-import Groq from "groq-sdk";
+import Groq from "groq-sdk/index.mjs";
 
 //this is needed to be able to get the env from the .env
 import "dotenv/config";
