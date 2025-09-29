@@ -19,7 +19,7 @@ const HomePage = () => {
         if (!description.trim()) return alert("Please enter an app description before submitting");
         setLoading(true); setRequirements(null);
         try {
-            const res = await fetch("http://localhost:5000/api/requirements", {
+            const res = await fetch("/api/ui", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ description }),
@@ -36,7 +36,7 @@ const HomePage = () => {
         if (!requirements) return alert("Nothing to save generate requirements first");
         setSaving(true);
         try {
-            const res = await fetch("http://localhost:5000/api/ui", {
+            const res = await fetch("/api/ui", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(requirements),
@@ -51,7 +51,7 @@ const HomePage = () => {
 
     const fetchSavedUIs = async () => {
         try {
-            const res = await fetch("http://localhost:5000/api/ui");
+            const res = await fetch("/api/ui");
             if (!res.ok) throw new Error("Failed to fetch saved UIs");
             const list = await res.json();
             setSavedUIs(list);
