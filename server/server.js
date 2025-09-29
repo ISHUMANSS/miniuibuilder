@@ -122,12 +122,12 @@ app.delete("/api/ui/:id", async (req, res) => {
 });
 
 //check server is running and if connected
-// app.listen(PORT, async () => {
-//   try {
-//     await connectToDB();
-//     console.log(`Server running on port ${PORT} and connected to MongoDB`);
-//   } catch (err) {
-//     console.error("Failed to connect to MongoDB:", err);
-//     process.exit(1);// crash if no DB
-//   }
-// });
+app.listen(PORT, async () => {
+  try {
+    await connectToDB();
+    console.log(`Server running on port ${PORT} and connected to MongoDB`);
+  } catch (err) {
+    console.error("Failed to connect to MongoDB:", err);
+    process.exit(1);// crash if no DB
+  }
+});
