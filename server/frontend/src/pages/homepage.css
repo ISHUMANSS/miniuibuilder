@@ -1,10 +1,11 @@
 :root {
-  --primary-color: #6897ca;
-  --primary-hover: rgb(80, 117, 156);
-  --background-color: #f8f9fa;
+  --primary-color: #a9cef4;
+  --primary-hover: rgb(98, 133, 173);
+  --background-color: #e5f1fd;
   --card-background: #ffffff;
   --text-color: #242527;
-  --border-color: #dee2e6;
+  --secondary-text-color:#465d75;
+  --border-color: #7f8183;
   --border-radius: 10px;
   --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
@@ -92,6 +93,21 @@ button:disabled {
   list-style-type: none;
 }
 
+.requirements {
+  display: flex;
+  flex-direction: column;
+}
+
+.requirements-save {
+  margin-top: auto; 
+}
+
+.requirements-save button {
+  width: 100%; 
+  display: block;
+  border-radius: 0 0 var(--border-radius) var(--border-radius); /* flush bottom */
+}
+
 /*role tabs*/
 .role-tabs {
   margin: 1.5rem 0 2rem 0;
@@ -108,7 +124,7 @@ button:disabled {
 .tab-buttons {
   display: flex;
   gap: 0.25rem;
-  margin-bottom: -2px; /*overlap the border*/
+  margin-bottom: -2px; 
 }
 
 .tab-button {
@@ -120,18 +136,18 @@ button:disabled {
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   font-weight: 600;
   color: var(--text-color);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   font-size: 0.95rem;
 }
 
 .tab-button:hover:not(.active) {
-  background: #e9ecef;
+  background: var(--primary-hover);
   color: var(--primary-color);
 }
 
 .tab-button.active {
   background: var(--card-background);
-  color: var(--primary-color);
+  color: var(--secondary-text-color);
   border-color: var(--primary-color);
   border-bottom: 2px solid var(--card-background);
   position: relative;
@@ -148,7 +164,7 @@ button:disabled {
 }
 
 .role-content h3 {
-  color: var(--primary-color);
+  color: var(--secondary-text-color);
   margin-bottom: 1.5rem;
   font-size: 1.3em;
   border-bottom: 1px solid var(--border-color);
@@ -328,7 +344,7 @@ input:focus {
   gap: 0.375rem; /* 6px */
 }
 
-/* Use a smaller button variant for the list */
+/*smaller button variant for applying the saved item*/
 .saved-ui-item-actions button {
   padding: 0.25rem 0.75rem;
   font-size: 0.85rem;
@@ -339,6 +355,9 @@ input:focus {
   color: #666;
   margin-top: 0.25rem;
 }
+
+
+
 
 
 

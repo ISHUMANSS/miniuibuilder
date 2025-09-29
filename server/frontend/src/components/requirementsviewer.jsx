@@ -5,7 +5,7 @@ import React from 'react';
  * @param {*} param0 
  * @returns html
  */
-const RequirementsViewer = ({ requirements }) => {
+const RequirementsViewer = ({ requirements, onSave, saving }) => {
     if (!requirements) return null;
 
     return (
@@ -35,6 +35,13 @@ const RequirementsViewer = ({ requirements }) => {
                         </li>
                     ))}
                 </ul>
+            </div>
+
+            {/* save button */}
+            <div className="requirements-save">
+                <button onClick={onSave} disabled={saving || !requirements}>
+                    {saving ? "Saving..." : "Save Requirements"}
+                </button>
             </div>
         </div>
     );

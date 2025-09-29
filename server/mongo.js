@@ -88,10 +88,10 @@ export async function getUIById(id) {
 }
 
 
-//edit a ui
+//edit a ui not currently using
 //not sure if will use
 /**
- * Update UI by id (partial replace of fields passed)
+ * update ui by id
  * returns the updated document
  */
 export async function updateUI(id, ui) {
@@ -109,7 +109,7 @@ export async function updateUI(id, ui) {
   }
 }
 
-//delete
+//delete not currently using
 /**
  * delete ui by id
  */
@@ -123,14 +123,3 @@ export async function deleteUI(id) {
   }
 }
 
-// close the connection
-// /**
-//  * Optional: close connection
-//  */
-// export async function closeConnection() {
-//   if (client) {
-//     await client.close();
-//     client = null;
-//     collection = null;
-//   }
-// }

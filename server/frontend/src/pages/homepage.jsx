@@ -100,7 +100,7 @@ const HomePage = () => {
         <div className="app-container">
             <NavBar />
 
-            <h1>AI App Builder Portal</h1>
+            <h1>AI UI Mockup Portal</h1>
             <InputSection
                 description={description}
                 setDescription={setDescription}
@@ -109,15 +109,15 @@ const HomePage = () => {
             />
 
             <div className="saved-ui-container-container">
-                <div>
-                    <button onClick={handleSaveRequirements} disabled={saving || !requirements}>
-                        {saving ? "Saving..." : "Save Requirements"}
-                    </button>
-                </div>
                 <SavedUIList savedUIs={savedUIs} applySavedUI={applySavedUI} saving={saving} fetchSavedUIs={fetchSavedUIs} />
             </div>
 
-            <RequirementsViewer requirements={requirements} />
+            <RequirementsViewer 
+                requirements={requirements} 
+                onSave={handleSaveRequirements} 
+                saving={saving} 
+            />  
+
             <GeneratedUI
                 requirements={requirements}
                 activeTab={activeTab}
