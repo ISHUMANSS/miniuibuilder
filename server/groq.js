@@ -27,14 +27,18 @@ export async function getGroqChatCompletion(userInput) {
         role: "system",
         content: `You are a strict JSON generator for an app building assistant.
         Always return a single JSON object matching this exact schema.
-        For "Entities", the key should be the entity name (e.g., "Student") and the value should be an array of relevant field names (e.g., ["Student Name", "Email", "Date of Birth"]).
-        If any data is missing or uncertain, return null for that specific field.
+        For "Features", the key MUST be a role name, and the value is an array of features for that role.
+        For "Entities", the key MUST be a role name. The value should be an object where each key is an entity that role can manage, and the value is an array of that entity's fields. An entity can appear under multiple roles.
 
         {
           "App Name": string | null,
-          "Entities": { [entityName: string]: string[] } | null,
           "Roles": string[] | null,
-          "Features": string[] | null
+          "Entities": { 
+            [roleName: string]: { 
+              [entityName: string]: string[] 
+            } 
+          } | null,
+          "Features": { [roleName: string]: string[] } | null
         }`
       },
       {
@@ -84,7 +88,7 @@ function normalizeAppData(parsed) {
   return {
     appName: parsed["App Name"] || "Unnamed App",
     roles: parsed.Roles || [],
-    features: parsed.Features || [],
-    entities: entities, //returns as an object
+    features: parsed.Features || {}, 
+    entities: parsed.Entities || {},
   };
 }

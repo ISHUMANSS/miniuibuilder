@@ -12,9 +12,26 @@ const RequirementsViewer = ({ requirements }) => {
         <div className="requirements">
             <h2>Extracted Requirements</h2>
             <p><strong>App Name:</strong> {requirements.appName}</p>
-            <p><strong>Entities:</strong> {Object.keys(requirements?.entities ?? {}).join(", ")}</p>
             <p><strong>Roles:</strong> {requirements.roles.join(", ")}</p>
-            <p><strong>Features:</strong> {requirements.features.join(", ")}</p>
+            <p><strong>Entities:</strong> {Object.keys(requirements?.entities ?? {}).join(", ")}</p>
+            <div>
+                <strong>Entities by Role:</strong>
+                <ul>
+                    hehe
+                </ul>
+            </div>
+            
+            
+            <div>
+                <strong>Features by Role:</strong>
+                <ul>
+                    {Object.entries(requirements.features || {}).map(([role, features]) => (
+                        <li key={role}>
+                            <strong>{role}:</strong> {features.join(", ")}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };

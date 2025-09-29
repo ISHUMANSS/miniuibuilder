@@ -14,7 +14,7 @@ const HomePage = () => {
     const [savedUIs, setSavedUIs] = useState([]);
     const [saving, setSaving] = useState(false);
 
-    // API calls
+    //API calls
     const handleSubmit = async () => {
         if (!description.trim()) return alert("Please enter an app description before submitting");
         setLoading(true); setRequirements(null);
@@ -58,12 +58,15 @@ const HomePage = () => {
         } catch (err) { console.error(err); }
     };
 
+
+    //do things with the ui
     const applySavedUI = (ui) => {
         if (!ui) return;
         setRequirements({
             appName: ui.appName || ui["App Name"] || "Unnamed App",
             roles: ui.roles || ui.Roles || [],
-            features: ui.features || ui.Features || [],
+            //ensure features defaults to an object
+            features: ui.features || ui.Features || {}, 
             entities: ui.entities || ui.Entities || {},
         });
         const roles = ui.roles || ui.Roles || [];
@@ -71,8 +74,21 @@ const HomePage = () => {
     };
 
     const getRoleSpecificContent = (role) => {
-        if (!requirements) return { entities: {}, features: [] };
-        return { entities: requirements.entities || {}, features: requirements.features || [] };
+        if (!requirements || !role) {
+            return { entities: {}, features: [] };
+        }
+
+        //get features specifically for the selected role.
+        //if the role doesn't exist in the features object default to an empty array.
+        const roleFeatures = requirements.features?.[role] || [];
+
+        //get the entities that match the role
+        const roleEntities = requirements.entities?.[role] || {};
+
+        return { 
+            entities: roleEntities, 
+            features: roleFeatures 
+        };
     };
 
 

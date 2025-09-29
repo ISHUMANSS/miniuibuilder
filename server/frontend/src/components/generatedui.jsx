@@ -27,12 +27,12 @@ const GeneratedUI = ({ requirements, activeTab, setActiveTab, getRoleSpecificCon
                 </div>
             )}
 
-            {/* Role-specific content */}
+            {/* role specific content */}
             {activeTab && (
                 <div className="role-content">
                     <h3>{activeTab} Dashboard</h3>
 
-                    {/* Role-specific features */}
+                    {/* role specific features */}
                     <div className="role-features">
                         <h4>Available Actions:</h4>
                         <div className="feature-list">
@@ -44,7 +44,7 @@ const GeneratedUI = ({ requirements, activeTab, setActiveTab, getRoleSpecificCon
                         </div>
                     </div>
 
-                    {/* Entity forms */}
+                    {/* entity forms */}
                     <div className="forms">
                         {Object.entries(roleContent.entities).map(([entity, fields]) => (
                             <div key={entity} className="form-card">
