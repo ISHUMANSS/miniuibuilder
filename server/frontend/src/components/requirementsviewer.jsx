@@ -15,9 +15,13 @@ const RequirementsViewer = ({ requirements }) => {
             <p><strong>Roles:</strong> {requirements.roles.join(", ")}</p>
             <p><strong>Entities:</strong> {Object.keys(requirements?.entities ?? {}).join(", ")}</p>
             <div>
-                <strong>Entities by Role:</strong>
+                    <strong>Entities by Role:</strong>
                 <ul>
-                    hehe
+                    {Object.entries(requirements?.entities || {}).map(([role, entityObj]) => (
+                    <li key={role}>
+                        <strong>{role}:</strong> {Object.keys(entityObj).join(", ")}
+                    </li>
+                    ))}
                 </ul>
             </div>
             
