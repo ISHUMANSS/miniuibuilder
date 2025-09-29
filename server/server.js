@@ -1,11 +1,19 @@
-//index.js
+//server.js
 //contains all of the requests and runs the api calls
 import "dotenv/config";
+
+//allow for hosting
+import path, { dirname } from 'path';
+import { fileURLToPath } from "url";
 
 import express from "express";
 import cors from "cors";
 import { getGroqChatCompletion } from "./groq.js";
 import { insertUI, listUIs, getUIById, updateUI, deleteUI, connectToDB } from "./mongo.js";
+
+//resolve dirname for es module
+const __filename = fileURLToPath(import.meta.url);
+const __direname = path.dirname(__filename);
 
 
 const app = express();
@@ -15,7 +23,13 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+//use the client app
+app.use(express.static(path.join(__direname, '/frontend/build')));
 
+//render client for any path
+app.get(/^\/(?!api).*/, (req, res) => 
+  res.sendFile(path.join(__direname, '/frontend/build/index.html'))
+);
 
 
 //requiremnts getter

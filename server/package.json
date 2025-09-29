@@ -10,6 +10,7 @@
     "mongodb": "^6.20.0"
   },
   "scripts": {
-    "start": "node index.js"
+    "server": "node server.js",
+    "build" : "npm install --prefix ./frontend && npm install react-router-dom --prefix ./frontend && npm run build --prefix ./frontend  && npm install"
 }
 }
