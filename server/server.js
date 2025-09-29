@@ -13,7 +13,7 @@ import { insertUI, listUIs, getUIById, updateUI, deleteUI, connectToDB } from ".
 
 //resolve dirname for es module
 const __filename = fileURLToPath(import.meta.url);
-const __direname = path.dirname(__filename);
+const __dirneame = path.dirname(__filename);
 
 
 const app = express();
@@ -24,11 +24,11 @@ app.use(cors());
 app.use(express.json());
 
 //use the client app
-app.use(express.static(path.join(__direname, '/frontend/build')));
+app.use(express.static(path.join(__dirneame, '/frontend/build')));
 
 //render client for any path
 app.get(/^\/(?!api).*/, (req, res) => 
-  res.sendFile(path.join(__direname, '/frontend/build/index.html'))
+  res.sendFile(path.join(__dirneame, '/frontend/build/index.html'))
 );
 
 

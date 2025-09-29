@@ -19,7 +19,7 @@ const HomePage = () => {
         if (!description.trim()) return alert("Please enter an app description before submitting");
         setLoading(true); setRequirements(null);
         try {
-            const res = await fetch("/api/ui", {
+            const res = await fetch("/api/requirements", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ description }),

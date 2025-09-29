@@ -11,6 +11,6 @@
   },
   "scripts": {
     "server": "node server.js",
-    "build" : "npm install --prefix ./frontend && npm install react-router-dom --prefix ./frontend && npm run build --prefix ./frontend  && npm install"
+    "build" : "npm install --prefix ./frontend && npm install react-router-dom --prefix ./frontend && npm run build --prefix ./frontend  && npm install && npm i groq-sdk"
 }
 }
