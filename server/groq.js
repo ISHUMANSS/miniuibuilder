@@ -1,3 +1,4 @@
+//groq.js
 import Groq from "groq-sdk/index.mjs";
 
 //this is needed to be able to get the env from the .env

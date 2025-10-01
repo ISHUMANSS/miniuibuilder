@@ -1,5 +1,10 @@
 import React from 'react';
-
+/**
+ * the Ui that has been generated.
+ * Takes in the JSON that is applied and loads that
+ * @param {*} param0 
+ * @returns 
+ */
 const GeneratedUI = ({ requirements, activeTab, setActiveTab, getRoleSpecificContent }) => {
     if (!requirements) return null;
 

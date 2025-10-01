@@ -36,7 +36,7 @@ async function getCollection() {
 
 
 /**
- * Convert Mongo doc to frontend-friendly object (string id)
+ * convert Mongodoc to frontend friendly object 
  */
 function transform(doc) {
   if (!doc) return null;
@@ -86,7 +86,6 @@ export async function getUIById(id) {
     return null;
   }
 }
-
 
 //edit a ui not currently using
 //not sure if will use

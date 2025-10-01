@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * this is the place where the user can type in their requirement
+ * this is the place where the user can type in their requirement for the ai
  * @param {*} param0 
  * @returns html
  */

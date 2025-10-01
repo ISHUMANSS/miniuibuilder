@@ -31,7 +31,7 @@ app.get(/^\/(?!api).*/, (req, res) =>
   res.sendFile(path.join(__dirneame, '/frontend/build/index.html'))
 );
 
-
+//GROQ
 //requiremnts getter
 app.post("/api/requirements", async (req, res) => {
   try {
@@ -57,7 +57,7 @@ app.post("/api/requirements", async (req, res) => {
 
 //mongo db
 
-//save a generated UI (frontend should send the normalized requirements JSON)
+//save a generated UI (frontend should send the JSON)
 app.post("/api/ui", async (req, res) => {
   try {
     const ui = req.body;
@@ -96,6 +96,7 @@ app.get("/api/ui/:id", async (req, res) => {
 });
 
 //update ui
+//not using
 app.put("/api/ui/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -110,6 +111,7 @@ app.put("/api/ui/:id", async (req, res) => {
 });
 
 //delete a UI
+//not using
 app.delete("/api/ui/:id", async (req, res) => {
   try {
     const ok = await deleteUI(req.params.id);
@@ -128,6 +130,6 @@ app.listen(PORT, async () => {
     console.log(`Server running on port ${PORT} and connected to MongoDB`);
   } catch (err) {
     console.error("Failed to connect to MongoDB:", err);
-    process.exit(1);// crash if no DB
+    process.exit(1);//crash if no DB
   }
 });
