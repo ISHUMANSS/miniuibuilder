@@ -1,50 +1,141 @@
-# miniuibuilder
-Created for Decoded - Internship Task: Mini AI App Builder Portal + User App UI
+
+## AI UI Mock Up Builder
+
+This Project was created for the Decoded Intern Evaluation Task. 
+
+It is a basic web portal where a user can input a prompt of a site they want. The requirements are pulled out from the prompt by AI and a non-functional basic ui is generated according to the requirements in the user's prompt.
+
+Because this site uses AI the requirements that are generated from a prompt can change each time it is re-run , so if you are unhappy with what is generated from a prompt one time, you can just run the generation again and slightly change the prompt until you get the roles and requirements you want.
+
+This site is also just for testing and is very limited in its deployment so it is being hosted and uses free versions of software, like with Groq  so there is a limited number of requests to the API per day so it might not always be available. 
+## Project Goals
+The goal of this project is show how natutal language can be used be to get the requiremnts for a site and then how those requirements can be modeled to act as a real site. This kinda project or a more fully developed version can help people who know what they want in a site but aren't able to translate those ideas into technical requiremnts or prototypes.
+
+This project addresses that challenge by:
+
+- Capturing requirements from plain English prompts using an AI model.
+- Automatically generating a simple mock user interface (UI) to visualize those requirements.
+- Providing a proof of concept portal that shows how AI can accelerate early stages of app design and requirement gathering.
+## Tech Stack
+
+**Client:** React
+
+**Server:** Node, Express
+
+**AI:** Groq as the api / hosting service 
+
+**AI Model:** openai/gpt-oss-20b
+
+**Database:** Mongo DB 
+
+## Features
+
+- AI Requiremt Capture 
+- Convert Plain text into structured JSON
+- Saving UI to DB
+- Loading UI from DB
+- Applying AI Requiremt from JSON
 
 
-Intern Evaluation Task: Mini AI App
-Builder Portal + User App UI
-Objective
-Build a basic web portal where:
-1. A user describes an app they want (requirement capture).
-2. The portal captures the requirements using an AI API.
-3. Based on those requirements, generate a very simple mock UI of the app (e.g., forms,
-tables, or buttons).
-(Use React, Node JS Render and Mongo Db) - set up your own free accounts and have live
-site.
-Requirements
-1. Requirement Capture Portal
-- Input box for app description.
-- Button to submit.
-- Show extracted App Name, Entities, Roles, Features.
-2. Generate Simple User App UI
-- For each Entity, create a form with a few input fields.
-- Add a menu or tabs for roles/features.
-- UI doesn’t need to be functional — just a mock/demo generated from requirements.
-3. Frontend
-- React
-- Keep it clean, simple, and easy to navigate.
-Output Example
-User Input:
-"I want an app to manage student courses and grades. Teachers add courses, students enrol,
-and admins manage reports."
-AI Captured Requirements:
-- App Name: Course Manager
-- Entities: Student, Course, Grade
-- Roles: Teacher, Student, Admin
-- Features: Add course, Enrol students, View reports
-Generated UI:
-- Menu: Student | Teacher | Admin
-- Forms:
- - Student → Name, Email, Age
- - Course → Title, Code, Credits
- - Grade → Student, Course, Grade
-Evaluation Criteria
-- Can they structure code clearly?
-- Can they integrate AI API for requirement extraction?
-- Can they dynamically generate UI components?
-- Is the UI clean and somewhat user-friendly?
-Deliverables
-- Running app (local or deployed).
-- Code repo (GitHub/zip).
-- README with setup steps.
+## Online Deployment
+
+This project was deployed with Render. When first loading the project it can take a few miniutes to spin up after not being used for some time.
+
+Project Link: https://miniuibuilder-for-internship-project.onrender.com/ 
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/ISHUMANSS/miniuibuilder
+```
+
+Go to the server directory
+
+```bash
+  cd server
+```
+
+Install server dependencies:
+
+```bash
+  npm install
+```
+
+```bash
+    npm install mongodb dotenv express cors
+```
+
+```bash
+    npm i groq-sdk
+```
+
+Install and Build Front End:
+
+```bash
+  cd frontend
+```
+
+```bash
+  npm install
+```
+
+```bash
+    npm i react-router-dom
+```
+
+Build the frontend so it is able to be run by the server:
+```bash
+    npm run build
+```
+
+Start the server: in the server folder run
+```bash
+  node server.js
+```
+
+
+## Usage
+
+1. Start the server (`node server.js`).
+2. Open http://localhost:5000 (or online with render).
+3. Enter a description of a site you want.
+4. The AI extracts requirements and generates a basic UI.
+5. Save and reload generated UIs from the database.
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file in the server folder
+
+Mongo DB
+- `MONGODB_URI`
+
+- `MONGODB_DB`
+
+- `MONGODB_COLLECTION`
+
+Groq
+
+- `GROQ_API_KEY`
+
+
+## Future Improvements
+Improve Database connectivity
+- Allow for updates on saved UIs
+- Allow for Deletion of a saved UI in on the page
+
+General Site
+- Have an Authenticated user to manage saved UIs
+- Have user accounts so specific users can have their own saved uis 
+- Support for exporting generated uis into actual react code and into working features
+- Improve Site css and overall look
+- More custom elements rather then just the same tabs, action buttons, and forms
+- Allow for user colour choices in the UI
+
+## Authors
+
+- [@Is_human](https://github.com/ISHUMANSS) (Alister Faid)
+
