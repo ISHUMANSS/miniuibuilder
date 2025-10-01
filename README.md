@@ -16,6 +16,49 @@ This project addresses that challenge by:
 - Capturing requirements from plain English prompts using an AI model.
 - Automatically generating a simple mock user interface (UI) to visualise those requirements.
 - Providing a proof of concept portal that shows how AI can accelerate early stages of app design and requirement gathering.
+
+## Picking the AI API and which model to use
+I picked Groq over using the OpenAI api because it has a free tier, has access to lots of different models from different companies, and from my research, the api is one of the fastest to be able to respond and is able to generate results quickly, so the user isn't waiting to long.
+
+Model data
+deciding to pick what model is the best and produces the best results for getting the requirements out of the users' message
+
+These are just some of the models in the chat completions section of Groq
+### Models:
+**openai/gpt-oss-20b**
+- max 30 requests per min
+- max 1K per day
+- max 8K tokens per min
+- max 200K tokens per day
+
+**allam-2-7b**
+- max 30 requests per min
+- max 7K per day
+- max 6K tokens per min
+- max 500K tokens per day
+
+**llama-3.1-8b-instant**
+- max 30 requests per min
+- max 14.4K per day
+- max 6K tokens per min
+- max 500K tokens per day
+
+**deepseek-r1-distill-llama-70b**
+- max 30 requests per min
+- max 1K per day
+- max 6K tokens per min
+- max 100K tokens per day
+
+**gemma2-9b-it**
+- max 30 requests per min
+- max 14.4K per day
+- max 15K tokens per min
+- max 500K tokens per day
+
+So far, from my testing, the best results I have gotten have been from the OpenAI model (openai/gpt-oss-20b)
+The system is only small and it is only for testing, so I should be able to get away with a lower request limit and the max of 30 per min in the free tier
+
+
 ## Tech Stack
 
 **Client:** React
@@ -26,7 +69,7 @@ This project addresses that challenge by:
 
 **AI Model:** openai/gpt-oss-20b
 
-**Database:** Mongo DB 
+**Database:** MongoDB (hosted on their hosting service)
 
 ## Features
 
