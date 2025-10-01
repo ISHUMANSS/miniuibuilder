@@ -86,6 +86,10 @@ Install and Build Front End:
     npm i react-router-dom
 ```
 
+```bash
+    npm install react-toastify
+```
+
 Build the frontend so it can be run by the server:
 ```bash
     npm run build
