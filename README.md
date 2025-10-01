@@ -5,16 +5,16 @@ This Project was created for the Decoded Intern Evaluation Task.
 
 It is a basic web portal where a user can input a prompt of a site they want. The requirements are pulled out from the prompt by AI and a non-functional basic ui is generated according to the requirements in the user's prompt.
 
-Because this site uses AI the requirements that are generated from a prompt can change each time it is re-run , so if you are unhappy with what is generated from a prompt one time, you can just run the generation again and slightly change the prompt until you get the roles and requirements you want.
+Because this site uses AI the requirements that are generated from a prompt can change each time it is re-run, so if you are unhappy with what is generated from a prompt one time, you can just run the generation again and slightly change the prompt until you get the roles and requirements you want.
 
-This site is also just for testing and is very limited in its deployment so it is being hosted and uses free versions of software, like with Groq  so there is a limited number of requests to the API per day so it might not always be available. 
+This site is also just for testing and is very limited in its deployment so it is being hosted and uses free versions of software, like with Groq so there is a limited number of requests to the API per day so it might not always be available. 
 ## Project Goals
-The goal of this project is show how natutal language can be used be to get the requiremnts for a site and then how those requirements can be modeled to act as a real site. This kinda project or a more fully developed version can help people who know what they want in a site but aren't able to translate those ideas into technical requiremnts or prototypes.
+The goal of this project is to show how natural language can be used be to get the requirements for a site and then how those requirements can be modelled to act as a real site. This kinda project or a more fully developed version can help people who know what they want in a site but aren't able to translate those ideas into technical requiremnts or prototypes.
 
 This project addresses that challenge by:
 
 - Capturing requirements from plain English prompts using an AI model.
-- Automatically generating a simple mock user interface (UI) to visualize those requirements.
+- Automatically generating a simple mock user interface (UI) to visualise those requirements.
 - Providing a proof of concept portal that shows how AI can accelerate early stages of app design and requirement gathering.
 ## Tech Stack
 
@@ -30,16 +30,16 @@ This project addresses that challenge by:
 
 ## Features
 
-- AI Requiremt Capture 
+- AI Requirement Capture 
 - Convert Plain text into structured JSON
 - Saving UI to DB
 - Loading UI from DB
-- Applying AI Requiremt from JSON
+- Applying AI Requirement from JSON
 
 
 ## Online Deployment
 
-This project was deployed with Render. When first loading the project it can take a few miniutes to spin up after not being used for some time.
+This project was deployed with Render. When first loading the project, it can take a few minutes to spin up after not being used for some time.
 
 Project Link: https://miniuibuilder-for-internship-project.onrender.com/ 
 
@@ -86,12 +86,12 @@ Install and Build Front End:
     npm i react-router-dom
 ```
 
-Build the frontend so it is able to be run by the server:
+Build the frontend so it can be run by the server:
 ```bash
     npm run build
 ```
 
-Start the server: in the server folder run
+Start the server: in the server folder
 ```bash
   node server.js
 ```
@@ -125,14 +125,14 @@ Groq
 ## Future Improvements
 Improve Database connectivity
 - Allow for updates on saved UIs
-- Allow for Deletion of a saved UI in on the page
+- Allow for the Deletion of a saved UI on the page
 
 General Site
-- Have an Authenticated user to manage saved UIs
-- Have user accounts so specific users can have their own saved uis 
-- Support for exporting generated uis into actual react code and into working features
-- Improve Site css and overall look
-- More custom elements rather then just the same tabs, action buttons, and forms
+- Have an authenticated user to manage saved UIs
+- Have user accounts so specific users can have their own saved UIs 
+- Support for exporting generated UIs into actual React code and into working features
+- Improve Site CSS and overall look
+- More custom elements rather than just the same tabs, action buttons, and forms
 - Allow for user colour choices in the UI
 
 ## Authors
