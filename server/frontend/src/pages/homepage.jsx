@@ -4,7 +4,6 @@ import SavedUIList from '../components/saveduilist';
 import RequirementsViewer from '../components/requirementsviewer';
 import GeneratedUI from '../components/generatedui';
 import InputSection from '../components/InputSection';
-import NavBar from '../components/navbar';
 
 const HomePage = () => {
     const [description, setDescription] = useState("");
@@ -98,7 +97,7 @@ const HomePage = () => {
 
     return (
         <div className="app-container">
-            <NavBar />
+            
 
             <h1>AI UI Mockup Portal</h1>
             <InputSection
@@ -108,9 +107,7 @@ const HomePage = () => {
                 loading={loading}
             />
 
-            <div className="saved-ui-container-container">
-                <SavedUIList savedUIs={savedUIs} applySavedUI={applySavedUI} saving={saving} fetchSavedUIs={fetchSavedUIs} />
-            </div>
+            
 
             <RequirementsViewer 
                 requirements={requirements} 
@@ -124,6 +121,10 @@ const HomePage = () => {
                 setActiveTab={setActiveTab}
                 getRoleSpecificContent={getRoleSpecificContent}
             />
+
+            <div className="saved-ui-container-container">
+                <SavedUIList savedUIs={savedUIs} applySavedUI={applySavedUI} saving={saving} fetchSavedUIs={fetchSavedUIs} />
+            </div>
         </div>
     );
 };
